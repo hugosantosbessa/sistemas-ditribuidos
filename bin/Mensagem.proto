@@ -1,0 +1,45 @@
+// See README.txt for information and build instructions.
+//
+// Note: START and END tags are used in comments to define sections used in
+// tutorials.  They are not part of the syntax for Protocol Buffers.
+//
+// To get an in-depth walkthrough of this file and the related examples, see:
+// https://developers.google.com/protocol-buffers/docs/tutorials
+
+// [START declaration]
+syntax = "proto3";
+package tutorial;
+
+import "google/protobuf/timestamp.proto";
+// [END declaration]
+
+// [START java_declaration]
+option java_multiple_files = true;
+option java_package = "com.mensagem.protos";
+option java_outer_classname = "AddressMensagemProtos";
+// [END java_declaration]
+
+// [START csharp_declaration]
+option csharp_namespace = "Google.Protobuf.Examples.AddressMensagem";
+// [END csharp_declaration]
+
+// [START go_declaration]
+option go_package = "../mensagem";
+// [END go_declaration]
+
+// [START messages]
+message Mensagem {
+  int32 messageType = 1;
+  int32 request_id = 2;
+  string object_reference = 3; 
+  string method = 4; 
+  bytes arguments = 5;
+
+  google.protobuf.Timestamp last_updated = 6;
+}
+
+// Our address book file is just one of these.
+message AddressMensagem {
+  repeated Mensagem mensagem = 1;
+}
+// [END messages]
