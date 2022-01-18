@@ -66,7 +66,16 @@ public class UDPServer {
 	}
 
 	public void sendReply(byte[] resposta) {
-		// enviado via moodle
+		byte[] sendData = new byte[1024];
+		DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length);
+		try {
+			clientSocket.send(sendPacket);
+			clientSocket.setSoTimeout(2000);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 	public void finaliza() {
