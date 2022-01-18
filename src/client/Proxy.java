@@ -6,13 +6,9 @@ import java.io.IOException;
 import java.net.SocketTimeoutException;
 
 import com.google.protobuf.ByteString;
-import com.google.protobuf.InvalidProtocolBufferException;
 
-import com.mensagem.protos.AddressMensagem;
 import com.mensagem.protos.Mensagem;
-import com.mensagem_response.protos.AddressMensagemResponse;
 import com.mensagem_response.protos.MensagemResponse;
-import com.usuarios.protos.AddressUsuarios;
 import com.usuarios.protos.Usuario;
 
 
@@ -29,22 +25,17 @@ public class Proxy {
 
 	public void Menu() {
 		System.out.println("-------------------------------------------------------------------------");
-		System.out.println("\nMENU USUARIO\nDigite o nº da operação que deseja executar: ");
-		System.out.println("1. Cadastrar Usuário");	
+		System.out.println("\nMENU USUARIO\nDigite o n da operacao que deseja executar: ");
+		System.out.println("1. Cadastrar Usuario");	
 		System.out.println("-------------------------------------------------------------------------");
 	}
-	/*
-	 * 
-	 * SERVIÇÕS DO USUÁRIO
-	 * 
-	 */
 
 	public String CadastrarUsuario(String nome, String Id, String email, String cpf) {// cad proto
 		if (cpf != null) {
 			byte[] args = new byte[1024];
 			args = empacotaCadastro(nome, Id, email, cpf);
 
-			Mensagem aux = doOperation("ReferenceAuth", "Metodo_cadastro_usuario", args);
+			Mensagem aux = doOperation("Cadastro", "Metodo_cadastro_usuario", args);
 
 			MensagemResponse msgResposta = null;
 
@@ -52,22 +43,16 @@ public class Proxy {
 				msgResposta = MensagemResponse
 						.parseDelimitedFrom(new ByteArrayInputStream(aux.getArguments().toByteArray()));
 			} catch (java.lang.NullPointerException e) {
-				System.out.println("Servidor não respondeu!, Tente novamente mais tarde.");
+				System.out.println("Servidor nao respondeu!, Tente novamente mais tarde.");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 
 			return msgResposta.getMensagem();
 		} else {
-			return "Operação invalida";
+			return "Operaï¿½ï¿½o invalida";
 		}
 	}
-
-	/*
-	 * 
-	 * EMPACOTAMENTO
-	 * 
-	 */
 
 	private byte[] empacotaCadastro(String nome, String Id, String email, String cpf) {
 		Usuario cad = Usuario.newBuilder().setNome(nome).setId(Id).setEmail(email).setCpf(cpf).build();
@@ -99,10 +84,8 @@ public class Proxy {
 		try {
 			msg = Mensagem.parseDelimitedFrom(new ByteArrayInputStream(args));
 			if (msg.getMessageType() == 1) {
-//				System.out.println("Mensagem de resposta");
 			} else {
 				msg = null;
-//				System.out.println("Mensagem de requisiï¿½ï¿½o : ErroMsg - era esperado uma mensagem de resposta");
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -111,11 +94,6 @@ public class Proxy {
 		return msg;
 	}
 
-	/*
-	 * 
-	 * DO_OPERATION
-	 * 
-	 */
 	private Mensagem doOperation(String objectRef, String method, byte[] args) {
 
 		byte[] data = empacotaMensagem(objectRef, method, args);
