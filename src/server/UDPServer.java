@@ -17,10 +17,10 @@ public class UDPServer {
 
 	DataInputStream in;
 	DataOutputStream out;
-	DatagramSocket clientSocket;
+	static DatagramSocket clientSocket;
 	AddressBookDespachante despachante;
 
-	public Mensagem getRequest() {
+	public static Mensagem getRequest() {
 		byte[] receiveData = new byte[1024];
 		Mensagem msg;
 		DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
@@ -38,15 +38,13 @@ public class UDPServer {
 
 	
 
-	public Mensagem desempacotaRequisicao(byte[] args) {
+	public static Mensagem desempacotaRequisicao(byte[] args) {
 		Mensagem msg = null;
 		try {
 			msg = Mensagem.parseDelimitedFrom(new ByteArrayInputStream(args));
 			if (msg.getMessageType() == 1) {
-//				System.out.println("Mensagem de resposta");
 			} else {
 				msg = null;
-//				System.out.println("Mensagem de requisi��o : ErroMsg - era esperado uma mensagem de resposta");
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -56,8 +54,15 @@ public class UDPServer {
 	}
 
 	public byte[] empacotaResposta(byte[] resultado, int requestId) {
-		
-		return null;
+		Mensagem msg = Mensagem.newBuilder().setMessageType(1).setRequestId(requestId).
+						setArguments(ByteString.copyFrom(resultado)).build();
+		ByteArrayOutputStream mensagem_em_bytes = new ByteArrayOutputStream(1024);
+		try {
+			msg.writeDelimitedTo(mensagem_em_bytes);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return mensagem_em_bytes.toByteArray();
 	}
 
 	public void sendReply(byte[] resposta) {

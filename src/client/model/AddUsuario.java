@@ -18,13 +18,13 @@ class AddUsuario {
     Usuario.Builder usuario = Usuario.newBuilder();
 
     stdout.print("ID: ");
-    usuario.setId(Integer.valueOf(stdin.readLine()));
+    usuario.setId(String.valueOf(stdin.readLine()));
 
-    stdout.print("CPF do usuário: ");
-    usuario.setCpf(Integer.valueOf(stdin.readLine()));
+    stdout.print("CPF do usuÃ¡rio: ");
+    usuario.setCpf(String.valueOf(stdin.readLine()));
 
-    stdout.print("Nome do usuário: ");
-    usuario.setName(stdin.readLine());
+    stdout.print("Nome do usuÃ¡rio: ");
+    usuario.setNome(stdin.readLine());
 
     stdout.print("Email: ");
     String email = stdin.readLine();
@@ -32,30 +32,6 @@ class AddUsuario {
       usuario.setEmail(email);
     }
 
-    while (true) {
-      stdout.print("Número do telefone (ou enter para sair): ");
-      String number = stdin.readLine();
-      if (number.length() == 0) {
-        break;
-      }
-
-      Usuario.PhoneNumber.Builder phoneNumber =
-        Usuario.PhoneNumber.newBuilder().setNumber(number);
-
-      stdout.print("É um telefone mobile, fixo, ou do trabalho? ");
-      String type = stdin.readLine();
-      if (type.equals("mobile")) {
-        phoneNumber.setType(Usuario.PhoneType.MOBILE);
-      } else if (type.equals("fixo")) {
-        phoneNumber.setType(Usuario.PhoneType.HOME);
-      } else if (type.equals("trabalho")) {
-        phoneNumber.setType(Usuario.PhoneType.WORK);
-      } else {
-        stdout.println("Unknown phone type.  Using default.");
-      }
-
-      usuario.addPhones(phoneNumber);
-    }
 
     return usuario.build();
   }

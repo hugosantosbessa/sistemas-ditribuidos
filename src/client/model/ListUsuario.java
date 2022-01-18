@@ -13,27 +13,9 @@ class ListUsuario {
     for (Usuario usuario: addressUsuarios.getUsuarioList()) {
       System.out.println("Person ID: " + usuario.getId());
       System.out.println("	CPF: " + usuario.getCpf());
-      System.out.println("	Name: " + usuario.getName());
+      System.out.println("	Name: " + usuario.getNome());
       if (!usuario.getEmail().isEmpty()) {
         System.out.println("	E-mail address: " + usuario.getEmail());
-      }
-
-      for (Usuario.PhoneNumber phoneNumber : usuario.getPhonesList()) {
-        switch (phoneNumber.getType()) {
-          case MOBILE:
-            System.out.print("	Mobile phone #: ");
-            break;
-          case HOME:
-            System.out.print("	Home phone #: ");
-            break;
-          case WORK:
-            System.out.print("	Work phone #: ");
-            break;
-          default:
-            System.out.println("	Unknown phone #: ");
-            break;
-        }
-        System.out.println(phoneNumber.getNumber());
       }
     }
   }
