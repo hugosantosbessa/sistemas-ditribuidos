@@ -82,7 +82,7 @@ public class UDPServer {
 				idUltimoMsg = msgResposta.request_id;
 				ultimoCliente=cliente;
 
-				// chamar despachante
+				sendReply(mensagem, des.invoke(mensagem), cliente);
 			}else{
 				System.out.print("Mensagem Duplicada -> ID:",msgResposta.request_id, "cliente:", cliente);
 			}
