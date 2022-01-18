@@ -83,10 +83,9 @@ public class UDPServer {
 	}
 
 	public static void main(String args[]) {
-		Mensagem mensagem = null;
-		mensagem = getRequest();
+		Mensagem mensagem = getRequest();
 		int idUltimaMsg = 0;
-		ultimoCliente = ();
+		int ultimoCliente = ();
 		msgResposta = msgResposta.getRequest();
 		cliente = cliente.getRequest();
 
@@ -96,7 +95,7 @@ public class UDPServer {
 				idUltimoMsg = msgResposta.request_id;
 				ultimoCliente=cliente;
 
-				sendReply(mensagem, des.invoke(mensagem), cliente);
+				sendReply(despachante.selecionaEqueleto(mensagem));
 			}else{
 				System.out.print("Mensagem Duplicada -> ID:",msgResposta.request_id, "cliente:", cliente);
 			}
