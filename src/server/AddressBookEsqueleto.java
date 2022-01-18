@@ -1,5 +1,7 @@
 package server;
 
+import com.google.protobuf.ByteString;
+
 public class AddressBookEsqueleto {
 
 	AddressBookServente servente;
@@ -8,21 +10,24 @@ public class AddressBookEsqueleto {
 		servente = new AddressBookServente();
 	}
 
-	public byte[] addPerson(ByteString args) {
+	public byte[] CadastrarUsuario(ByteString args) {
 		// (1) Desempacota argumento de entrada
 		// (2) chama o metodo do servente
-		// (3) empacota resposta do método servente e retorna
+		// (3) empacota resposta do mï¿½todo servente e retorna
+		return null;
 	}
 
 	public byte[] list(ByteString args) {
 		// (1) Desempacota argumento de entrada
 		// (2) chama o metodo do servente
-		// (3) empacota resposta do método servente e retorna
+		// (3) empacota resposta do mï¿½todo servente e retorna
+		return null;
 	}
 
 	public byte[] remove(ByteString args) {
 		// (1) Desempacota argumento de entrada
 		// (2) chama o metodo do servente
-		// (3) empacota resposta do método servente e retorna
+		// (3) empacota resposta do mï¿½todo servente e retorna
+		return null;
 	}
 }
