@@ -3,6 +3,8 @@ package server;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.*;
@@ -17,10 +19,10 @@ public class UDPServer {
 
 	DataInputStream in;
 	DataOutputStream out;
-	static DatagramSocket clientSocket;
+	DatagramSocket clientSocket;
 	AddressBookDespachante despachante;
 
-	public static Mensagem getRequest() {
+	public Mensagem getRequest() {
 		byte[] receiveData = new byte[1024];
 		Mensagem msg;
 		DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
@@ -35,16 +37,19 @@ public class UDPServer {
 		return msg;
 
 	}
+	
 
 	
 
-	public static Mensagem desempacotaRequisicao(byte[] args) {
+	public Mensagem desempacotaRequisicao(byte[] args) {
 		Mensagem msg = null;
 		try {
 			msg = Mensagem.parseDelimitedFrom(new ByteArrayInputStream(args));
 			if (msg.getMessageType() == 1) {
+//				System.out.println("Mensagem de resposta");
 			} else {
 				msg = null;
+//				System.out.println("Mensagem de requisi��o : ErroMsg - era esperado uma mensagem de resposta");
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -53,29 +58,16 @@ public class UDPServer {
 		return msg;
 	}
 
-	public byte[] empacotaResposta(byte[] resultado, int requestId) {
-		Mensagem msg = Mensagem.newBuilder().setMessageType(1).setRequestId(requestId).
-						setArguments(ByteString.copyFrom(resultado)).build();
-		ByteArrayOutputStream mensagem_em_bytes = new ByteArrayOutputStream(1024);
-		try {
-			msg.writeDelimitedTo(mensagem_em_bytes);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return mensagem_em_bytes.toByteArray();
+	public ObjectOutputStream empacotaResposta(byte[] msg, int requestId) {
+		ObjectOutputStream out = new ObjectOutputStream(out);
+		out.writeTo();
+
+
+		return out;
 	}
 
 	public void sendReply(byte[] resposta) {
-		byte[] sendData = new byte[1024];
-		DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length);
-		try {
-			clientSocket.send(sendPacket);
-			clientSocket.setSoTimeout(2000);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+		// enviado via moodle
 	}
 
 	public void finaliza() {
@@ -83,9 +75,10 @@ public class UDPServer {
 	}
 
 	public static void main(String args[]) {
-		Mensagem mensagem = getRequest();
+		Mensagem mensagem = null;
+		mensagem = getRequest();
 		int idUltimaMsg = 0;
-		int ultimoCliente = ();
+		ultimoCliente = ();
 		msgResposta = msgResposta.getRequest();
 		cliente = cliente.getRequest();
 
@@ -95,7 +88,7 @@ public class UDPServer {
 				idUltimoMsg = msgResposta.request_id;
 				ultimoCliente=cliente;
 
-				sendReply(despachante.selecionaEqueleto(mensagem));
+				sendReply(mensagem, des.invoke(mensagem), cliente);
 			}else{
 				System.out.print("Mensagem Duplicada -> ID:",msgResposta.request_id, "cliente:", cliente);
 			}
