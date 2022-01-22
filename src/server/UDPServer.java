@@ -11,7 +11,7 @@ import java.net.*;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 
-
+import com.google.protobuf.InvalidProtocolBufferException;
 //import com.google.protobuf.ByteString;
 import com.mensagem.protos.Mensagem;
 
@@ -42,28 +42,15 @@ public class UDPServer {
 	
 
 	public Mensagem desempacotaRequisicao(byte[] args) {
+		Mensagem mensagem = null;
+
 		try{
-		Mensagem mensagem = Mensagem.parseFrom(args);
+			mensagem = Mensagem.parseFrom(args);
 		
 			
 		}catch(InvalidProtocolBufferException e){
-			System.out.println("Erro:" + e.getMensagem);
+			System.out.println("Erro:" + e.getMessage());
 		}
-
-
-		/*
-		Mensagem msg = null;
-		try {
-			msg = Mensagem.parseDelimitedFrom(new ByteArrayInputStream(args));
-			if (msg.getMessageType() == 1) {
-//				System.out.println("Mensagem de resposta");
-			} else {
-				msg = null;
-//				System.out.println("Mensagem de requisi��o : ErroMsg - era esperado uma mensagem de resposta");
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		} */
 
 		return mensagem;
 	}
