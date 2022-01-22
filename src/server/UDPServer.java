@@ -12,7 +12,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 
 import com.google.protobuf.InvalidProtocolBufferException;
-//import com.google.protobuf.ByteString;
+import com.google.protobuf.ByteString;
 import com.mensagem.protos.Mensagem;
 
 public class UDPServer {
@@ -26,7 +26,6 @@ public class UDPServer {
 		byte[] receiveData = new byte[1024];
 		Mensagem msg;
 		DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
-		receiveData = receivePacket.getData();
 		msg = desempacotaRequisicao(receiveData);
 		try {
 			clientSocket.receive(receivePacket);
@@ -35,12 +34,8 @@ public class UDPServer {
 		}
 
 		return msg;
-
 	}
 	
-
-	
-
 	public Mensagem desempacotaRequisicao(byte[] args) {
 		Mensagem mensagem = null;
 
@@ -55,11 +50,16 @@ public class UDPServer {
 		return mensagem;
 	}
 
-	public Mensagem empacotaResposta(byte[] msg, int requestId) {
-		Mensagem msg = msg.toByteArray();
+	public byte[] empacotaResposta(byte[] args, int requestId) {
+		Mensagem mensagem = Mensagem.newBuilder().build();
 
-
-		return msg;
+		ByteArrayOutputStream mensagem_em_bytes = new ByteArrayOutputStream(1024);
+		try {
+			mensagem.writeDelimitedTo(mensagem_em_bytes);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return mensagem_em_bytes.toByteArray();
 	}
 
 	public void sendReply(byte[] resposta) {
