@@ -17,12 +17,9 @@ import com.mensagem.protos.Mensagem;
 
 public class UDPServer {
 
-	DataInputStream in;
-	DataOutputStream out;
-	DatagramSocket clientSocket;
-	AddressBookDespachante despachante;
+	static DatagramSocket clientSocket;
 
-	public Mensagem getRequest() {
+	public static Mensagem getRequest() {
 		byte[] receiveData = new byte[1024];
 		Mensagem msg;
 		DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
@@ -36,7 +33,7 @@ public class UDPServer {
 		return msg;
 	}
 	
-	public Mensagem desempacotaRequisicao(byte[] args) {
+	public static Mensagem desempacotaRequisicao(byte[] args) {
 		Mensagem mensagem = null;
 
 		try{
@@ -51,7 +48,7 @@ public class UDPServer {
 	}
 
 	public byte[] empacotaResposta(byte[] args, int requestId) {
-		Mensagem mensagem = Mensagem.newBuilder().build();
+		Mensagem mensagem = Mensagem.newBuilder().setRequestId(requestId).setArguments(ByteString.copyFrom(args)).build();
 
 		ByteArrayOutputStream mensagem_em_bytes = new ByteArrayOutputStream(1024);
 		try {
@@ -62,31 +59,41 @@ public class UDPServer {
 		return mensagem_em_bytes.toByteArray();
 	}
 
-	public void sendReply(byte[] resposta) {
-		// enviado via moodle
+	public static void sendReply(byte[] resposta) {
+		byte[] sendData = new byte[1024];
+		DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length);
+		try {
+			clientSocket.send(sendPacket);
+			clientSocket.setSoTimeout(2000);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public void finaliza() {
 		clientSocket.close();
 	}
-
+	/* */
 	public static void main(String args[]) {
 		Mensagem mensagem = null;
 		mensagem = getRequest();
-		int idUltimaMsg = 0;
-		ultimoCliente = ();
-		msgResposta = msgResposta.getRequest();
-		cliente = cliente.getRequest();
-
+		AddressBookDespachante despachante = new AddressBookDespachante();
+		int idUltimaMsg = -1;
+		int ultimoCliente = -1;
+		int cliente = 0;
+		//msgResposta = msgResposta.getRequest();
+	
 		while(true){
-			if((idUltimoMsg != mensagem.request_id && ultimoCliente != cliente) ||
-			(idUltimoMsg != mensagem.request_id && ultimoCliente == cliente)){
-				idUltimoMsg = msgResposta.request_id;
-				ultimoCliente=cliente;
 
-				sendReply(mensagem, des.invoke(mensagem), cliente);
+			if((idUltimaMsg != mensagem.getRequestId() && ultimoCliente != cliente) ||
+			(idUltimaMsg != mensagem.getRequestId() && ultimoCliente == cliente)){
+				idUltimaMsg = mensagem.getRequestId();
+				ultimoCliente = cliente;
+				cliente += 1;
+				sendReply(despachante.selecionaEqueleto(mensagem));	
 			}else{
-				System.out.print("Mensagem Duplicada -> ID:",msgResposta.request_id, "cliente:", cliente);
+				System.out.println("Mensagem Duplicada -> ID:" + mensagem.getRequestId() + "cliente:" + cliente);
 			}
 		}
 
