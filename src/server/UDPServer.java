@@ -12,11 +12,9 @@ public class UDPServer {
 
 	static DatagramSocket clientSocket =  null;
 
-	public static Mensagem getRequest() throws SocketException {
+	public static byte[] getRequest() throws SocketException {
 		byte[] receiveData = new byte[1024];
-		Mensagem msg;
 		DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
-		msg = desempacotaRequisicao(receiveData);
 		clientSocket =  new DatagramSocket(6789);
 		try {
 			clientSocket.receive(receivePacket);
@@ -24,7 +22,7 @@ public class UDPServer {
 			e.printStackTrace();
 		}
 
-		return msg;
+		return receiveData;
 	}
 	
 	public static Mensagem desempacotaRequisicao(byte[] args) {
@@ -70,14 +68,12 @@ public class UDPServer {
 	}
 	
 	public static void main(String args[]) throws SocketException {
-		Mensagem mensagem = null;
-		mensagem = getRequest();
+		Mensagem mensagem = desempacotaRequisicao(getRequest());
 		AddressBookDespachante despachante = new AddressBookDespachante();
 		int idUltimaMsg = -1;
 		int ultimoCliente = -1;
 		int cliente = 0;
 		//msgResposta = msgResposta.getRequest();
-	
 		while(true){
 
 			if((idUltimaMsg != mensagem.getRequestId() && ultimoCliente != cliente) ||
