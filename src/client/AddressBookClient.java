@@ -32,9 +32,14 @@ public class AddressBookClient {
 		case 1:
 			proxy.CadastrarUsuario(opt, opt, opt, opt);
 			break;
-
+		case 2:
+			proxy.CadastrarLivro(opt, opt, opt, opt, opt);
+			break;
+		case 3:
+			proxy.CadastrarAutor(opt, opt, opt, opt);
+			break;
 		default:
-			System.out.println("Operação invalida, tente outra.");
+			System.out.println("Operaï¿½ï¿½o invalida, tente outra.");
 			break;
 		}
 		return operacao;
