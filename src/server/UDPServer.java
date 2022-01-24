@@ -13,9 +13,9 @@ public class UDPServer {
 	static DatagramSocket clientSocket =  null;
 
 	public static byte[] getRequest() throws SocketException {
+		clientSocket =  new DatagramSocket(9876);
 		byte[] receiveData = new byte[1024];
 		DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
-		clientSocket =  new DatagramSocket(6789);
 		try {
 			clientSocket.receive(receivePacket);
 		}catch (IOException e) {

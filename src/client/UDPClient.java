@@ -10,8 +10,8 @@ import java.net.UnknownHostException;
 public class UDPClient {
 
 	private DatagramSocket socket = null;
-	private String serverIP = "localhost";
-	private int port = 6789;
+	private String serverIP;
+	private int port;
 
 	public UDPClient(String serverIP, int port) {
 		this.serverIP = serverIP;
@@ -26,9 +26,9 @@ public class UDPClient {
 
 	public void sendRequest(byte[] requisicao) {
 		byte[] sendData = new byte[1024];
-
 		InetAddress IPAddress = null;
-
+		serverIP = "localhost";
+		port = 9876;
 		try {
 			IPAddress = InetAddress.getByName(serverIP);
 		} catch (UnknownHostException e1) {
