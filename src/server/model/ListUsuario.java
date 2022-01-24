@@ -1,13 +1,11 @@
-package client.model;
+package server.model;
 // See README.txt for information and build instructions.
 
 import com.usuarios.protos.AddressUsuarios;
 import com.usuarios.protos.Usuario;
 import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.PrintStream;
 
-class ListUsuario {
+public class ListUsuario {
   // Iterates though all people in the AddressBook and prints info about them.
   static void Print(AddressUsuarios addressUsuarios) {
     for (Usuario usuario: addressUsuarios.getUsuarioList()) {
@@ -22,7 +20,7 @@ class ListUsuario {
 
   // Main function:  Reads the entire address book from a file and prints all
   //   the information inside.
-  public static void main(String[] args) throws Exception {					
+  public static void ListarUsuarios() throws Exception {					
 	
 	String dir = "BackUp_usuarios";
     // Read the existing address book.

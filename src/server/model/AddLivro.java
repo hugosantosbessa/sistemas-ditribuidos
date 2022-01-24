@@ -1,4 +1,4 @@
-package client.model;
+package server.model;
 // See README.txt for information and build instructions.
 
 import com.livros.protos.AddressLivros;
@@ -11,13 +11,13 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 
-class AddLivro {
+public class AddLivro {
   // This function fills in a Person message based on user input.
   static Livro PromptForAddress(BufferedReader stdin,
                                  PrintStream stdout) throws IOException {
     Livro.Builder livro = Livro.newBuilder();
 
-    stdout.print("Código do livro: ");
+    stdout.print("Cï¿½digo do livro: ");
     livro.setCodigo(Integer.valueOf(stdin.readLine()));
 
     stdout.print("Quantidade de exemplares: ");
@@ -26,7 +26,7 @@ class AddLivro {
     stdout.print("Nome do autor: ");
     livro.setAutor(stdin.readLine());
     
-    stdout.print("Gênero do livro: ");
+    stdout.print("Gï¿½nero do livro: ");
     livro.setGenero(stdin.readLine());
 
     return livro.build();
@@ -35,7 +35,7 @@ class AddLivro {
   // Main function:  Reads the entire address book from a file,
   //   adds one person based on user input, then writes it back out to the same
   //   file.
-  public static void main(String[] args) throws Exception {
+  public static void CadastrarLivro(String titulo, String cod, String genero, String autor, String quant_exemplares) throws Exception {
 	  
 	 String dir = "BackUp_livros";
 
