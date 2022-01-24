@@ -30,8 +30,6 @@ public class UDPServer {
 
 		try{
 			mensagem = Mensagem.parseFrom(args);
-		
-			
 		}catch(InvalidProtocolBufferException e){
 			System.out.println("Erro:" + e.getMessage());
 		}
@@ -52,13 +50,23 @@ public class UDPServer {
 	}
 
 	public static void sendReply(byte[] resposta) {
+		String serverIP = "localhost";
+		int port = 9876;
 		byte[] sendData = new byte[1024];
-		DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length);
+		InetAddress IPAddress = null;
+		
+		try {
+			IPAddress = InetAddress.getByName(serverIP);
+		} catch (UnknownHostException e1) {
+			e1.printStackTrace();
+		}
+
+		sendData = resposta;
+		DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, IPAddress, port);
 		try {
 			clientSocket.send(sendPacket);
 			clientSocket.setSoTimeout(2000);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -67,14 +75,14 @@ public class UDPServer {
 		clientSocket.close();
 	}
 	
-	public static void main(String args[]) throws SocketException {
-		Mensagem mensagem = desempacotaRequisicao(getRequest());
+	public static void main(String args[]) throws SocketException {		
 		AddressBookDespachante despachante = new AddressBookDespachante();
 		int idUltimaMsg = -1;
 		int ultimoCliente = -1;
 		int cliente = 0;
 		//msgResposta = msgResposta.getRequest();
 		while(true){
+			Mensagem mensagem = desempacotaRequisicao(getRequest());
 
 			if((idUltimaMsg != mensagem.getRequestId() && ultimoCliente != cliente) ||
 			(idUltimaMsg != mensagem.getRequestId() && ultimoCliente == cliente)){
