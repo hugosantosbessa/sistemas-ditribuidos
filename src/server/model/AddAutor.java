@@ -1,4 +1,4 @@
-package client.model;
+package server.model;
 // See README.txt for information and build instructions.
 
 import com.autores.protos.AddressAutores;
@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 
-class AddAutor {
+public class AddAutor {
   // This function fills in a Person message based on user input.
   static Autor PromptForAddress(BufferedReader stdin,
                                  PrintStream stdout) throws IOException {
@@ -37,7 +37,7 @@ class AddAutor {
   // Main function:  Reads the entire address book from a file,
   //   adds one person based on user input, then writes it back out to the same
   //   file.
-  public static void main(String[] args) throws Exception {
+  public static void CadastrarAutor(String nome, String Id, String email, String cpf) throws Exception {
 
     AddressAutores.Builder addressAutores = AddressAutores.newBuilder();
     

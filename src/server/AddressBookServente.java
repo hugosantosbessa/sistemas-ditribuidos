@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.InputStreamReader;
 
+import server.model.*;
 import com.autores.protos.AddressAutores;
 import com.autores.protos.Autor;
 import java.io.IOException;
@@ -27,10 +28,10 @@ public class AddressBookServente {
 	}
 
 	public String CadastrarUsuario(Person person, String nomeAgenda) {
-
-		// Adiciona uma pessoa ao arquivo que mantem os dados da agenda.
-		// O path do arquivo � indicado por "nomeAgenda"
-		// Retorna uma mensagem de sucesso ou de erro
+		
+		
+		AddUsuario addUsuario = new AddUsuario();
+		addUsuario.CadastrarUsuario(nome, Id, email, cpf);
 	}
 
 	public String remove(int id, String nomeAgenda) {
@@ -40,5 +41,5 @@ public class AddressBookServente {
 		// O path do arquivo � indicado por "nomeAgenda"
 		// Retorna uma mensagem de sucesso ou de erro
 	}
-}
+
 }

@@ -1,4 +1,4 @@
-package client.model;
+package server.model;
 // See README.txt for information and build instructions.
 
 import com.usuarios.protos.AddressUsuarios;
@@ -11,7 +11,7 @@ import java.io.InputStreamReader;
 import java.io.IOException;
 import java.io.PrintStream;
 
-class AddUsuario {
+public class AddUsuario {
   // This function fills in a Person message based on user input.
   static Usuario PromptForAddress(BufferedReader stdin,
                                  PrintStream stdout) throws IOException {
@@ -39,7 +39,7 @@ class AddUsuario {
   // Main function:  Reads the entire address book from a file,
   //   adds one person based on user input, then writes it back out to the same
   //   file.
-  public static void main(String[] args) throws Exception {
+  public static void CadastrarUsuario(String nome, String Id, String email, String cpf) throws Exception {
 	 
 	String dir = "BackUp_usuarios";
 
