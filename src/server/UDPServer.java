@@ -10,13 +10,14 @@ import com.mensagem.protos.Mensagem;
 
 public class UDPServer {
 
-	static DatagramSocket clientSocket;
+	static DatagramSocket clientSocket =  null;
 
-	public static Mensagem getRequest() {
+	public static Mensagem getRequest() throws SocketException {
 		byte[] receiveData = new byte[1024];
 		Mensagem msg;
 		DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
 		msg = desempacotaRequisicao(receiveData);
+		clientSocket =  new DatagramSocket(6789);
 		try {
 			clientSocket.receive(receivePacket);
 		}catch (IOException e) {
@@ -67,8 +68,8 @@ public class UDPServer {
 	public void finaliza() {
 		clientSocket.close();
 	}
-	/* */
-	public static void main(String args[]) {
+	
+	public static void main(String args[]) throws SocketException {
 		Mensagem mensagem = null;
 		mensagem = getRequest();
 		AddressBookDespachante despachante = new AddressBookDespachante();
