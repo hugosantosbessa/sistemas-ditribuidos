@@ -30,16 +30,56 @@ public class AddressBookClient {
 
 		switch (operacao) {
 		case 1:
-			proxy.CadastrarUsuario(opt, opt, opt, opt);
+			System.out.println("Digite o nome do usuário: ");
+			do {
+				try {
+					opt = stdin.readLine();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			} while (opt.equals("\n") || opt.equals("") || opt.isEmpty());
+			String nome = opt + ";";
+			
+			System.out.println("Digite o Id do usuário: ");
+			do {
+				try {
+					opt = stdin.readLine();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			} while (opt.equals("\n") || opt.equals("") || opt.isEmpty());
+			String Id = opt + ";";
+			
+			System.out.println("Digite o email do usuário: ");
+			do {
+				try {
+					opt = stdin.readLine();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			} while (opt.equals("\n") || opt.equals("") || opt.isEmpty());
+			String email = opt + ";";
+			
+			System.out.println("Digite o CPF do usuário: ");
+			do {
+				try {
+					opt = stdin.readLine();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			} while (opt.equals("\n") || opt.equals("") || opt.isEmpty());
+			String cpf = opt + ";";
+			System.out.println(proxy.CadastrarUsuario(nome, Id, email, cpf)); 
 			break;
+			
 		case 2:
-			proxy.CadastrarLivro(opt, opt, opt, opt, opt);
+			//proxy.CadastrarLivro(opt, opt, opt, opt, opt);
 			break;
 		case 3:
-			proxy.CadastrarAutor(opt, opt, opt, opt);
+			//proxy.CadastrarAutor(opt, opt, opt, opt);
 			break;
 		default:
-			System.out.println("Opera��o invalida, tente outra.");
+			System.out.println("Operacao invalida, tente outra.");
 			break;
 		}
 		return operacao;

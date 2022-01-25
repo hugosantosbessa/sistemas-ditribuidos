@@ -3,36 +3,21 @@ package server.model;
 
 import com.usuarios.protos.AddressUsuarios;
 import com.usuarios.protos.Usuario;
-import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.InputStreamReader;
 import java.io.IOException;
-import java.io.PrintStream;
 
 public class AddUsuario {
   // This function fills in a Person message based on user input.
-  static Usuario PromptForAddress(BufferedReader stdin,
-                                 PrintStream stdout) throws IOException {
+  static Usuario setUser(String nome, String Id, String email, String cpf) throws IOException {
     Usuario.Builder usuario = Usuario.newBuilder();
 
-    stdout.print("ID: ");
-    usuario.setId(String.valueOf(stdin.readLine()));
-
-    stdout.print("CPF do usuário: ");
-    usuario.setCpf(String.valueOf(stdin.readLine()));
-
-    stdout.print("Nome do usuário: ");
-    usuario.setNome(stdin.readLine());
-
-    stdout.print("Email: ");
-    String email = stdin.readLine();
-    if (email.length() > 0) {
-      usuario.setEmail(email);
-    }
-
-
+    usuario.setId(Id);
+    usuario.setCpf(cpf);
+    usuario.setNome(nome);
+    usuario.setEmail(email);		
+    
     return usuario.build();
   }
 
@@ -56,11 +41,10 @@ public class AddUsuario {
     } catch (FileNotFoundException e) {
       //System.out.println(args[0] + ": File not found.  Creating a new file.");
     }
-
+    
     // Add an address.
     addressUsuarios.addUsuario(
-      PromptForAddress(new BufferedReader(new InputStreamReader(System.in)),
-                       System.out));
+    		setUser(nome, Id, email, cpf));
 
     // Write the new address book back to disk.
     FileOutputStream output = new FileOutputStream(dir);

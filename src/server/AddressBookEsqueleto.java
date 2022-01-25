@@ -27,14 +27,14 @@ public class AddressBookEsqueleto {
 	public byte[] CadastrarLivro(ByteString args) {
 		// (1) Desempacota argumento de entrada
 		// (2) chama o metodo do servente
-		// (3) empacota resposta do m�todo servente e retorna
+		// (3) empacota resposta do metodo servente e retorna
 		return null;
 	}
 
 	public byte[] CadastrarAutor(ByteString args) {
 		// (1) Desempacota argumento de entrada
 		// (2) chama o metodo do servente
-		// (3) empacota resposta do m�todo servente e retorna
+		// (3) empacota resposta do metodo servente e retorna
 		return null;
 	}
 
@@ -43,14 +43,14 @@ public class AddressBookEsqueleto {
 	public byte[] list(ByteString args) {
 		// (1) Desempacota argumento de entrada
 		// (2) chama o metodo do servente
-		// (3) empacota resposta do m�todo servente e retorna
+		// (3) empacota resposta do metodo servente e retorna
 		return null;
 	}
 
 	public byte[] remove(ByteString args) {
 		// (1) Desempacota argumento de entrada
 		// (2) chama o metodo do servente
-		// (3) empacota resposta do m�todo servente e retorna
+		// (3) empacota resposta do metodo servente e retorna
 		return null;
 	}
 }

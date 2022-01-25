@@ -39,21 +39,12 @@ public class Proxy {
 			args = empacotaCadastro(nome, Id, email, cpf);
 
 			Mensagem aux = doOperation("Cadastro", "Metodo_cadastro_usuario", args);
-
-			MensagemResponse msgResposta = null;
-
-			try {
-				msgResposta = MensagemResponse
-						.parseDelimitedFrom(new ByteArrayInputStream(aux.getArguments().toByteArray()));
-			} catch (java.lang.NullPointerException e) {
-				System.out.println("Servidor nao respondeu!, Tente novamente mais tarde.");
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-
-			return msgResposta.getMensagem();
+			byte[] msg =  aux.getArguments().toByteArray();
+			String msgResposta = new String(msg);
+		 
+			return msgResposta;
 		} else {
-			return "Opera��o invalida";
+			return "Operacao invalida";
 		}
 	}
 
@@ -70,6 +61,7 @@ public class Proxy {
 		return cad_em_bytes.toByteArray();
 	}
 
+	/*
 	public String CadastrarLivro(String titulo, String cod, String genero, String autor, String quant_exemplares) {// cad proto
 		if (cod != null) {
 			byte[] args = new byte[1024];
@@ -90,12 +82,13 @@ public class Proxy {
 
 			return msgResposta.getMensagem();
 		} else {
-			return "Opera��o invalida";
+			return "Operaï¿½ï¿½o invalida";
 		}
 	}
-
+	*/
+	/*
 	private byte[] empacotaCadLivro(String titulo, String cod, String genero, String autor, String quant_exemplares) {
-		Livro cadLivro = Livro.newBuilder().setTitulo(titulo).setCod(cod).setGenero(genero).setAutor(autor).setQtd(quant_exemplares).build();
+		Livro cadLivro = Livro.newBuilder().set(titulo).setCod(cod).setGenero(genero).setAutor(autor).setQtd(quant_exemplares).build();
 
 		ByteArrayOutputStream cadLivro_em_bytes = new ByteArrayOutputStream(1024);
 		try {
@@ -105,8 +98,10 @@ public class Proxy {
 		}
 
 		return cadLivro_em_bytes.toByteArray();
+		
 	}
-
+	*/
+	/*
 	public String CadastrarAutor(String nome, String Id, String email, String cpf) {// cad proto
 		if (cpf != null) {
 			byte[] args = new byte[1024];
@@ -127,7 +122,7 @@ public class Proxy {
 
 			return msgResposta.getMensagem();
 		} else {
-			return "Opera��o invalida";
+			return "Operaï¿½ï¿½o invalida";
 		}
 	}
 
@@ -143,6 +138,7 @@ public class Proxy {
 
 		return cadAutor_em_bytes.toByteArray();
 	}
+	*/
 
 	private byte[] empacotaMensagem(String objectRef, String method, byte[] args) {
 		Mensagem msg = Mensagem.newBuilder().setMessageType(0).setRequestId(id_request).setObjectReference(objectRef)
@@ -185,9 +181,12 @@ public class Proxy {
 				estouro = false;
 				byte[] m;
 				try {
+					System.out.println("tentando receber pacote do server");
 					m = udpclient.getReplay();
+					System.out.println("Recebendo pacote do server");
 					resposta = desempacotaMensagem(m);
 				} catch (SocketTimeoutException e) {
+					System.out.println("erro ao receber pacote do server");
 					estouro = true;
 					udpclient.sendRequest(data);
 				}
