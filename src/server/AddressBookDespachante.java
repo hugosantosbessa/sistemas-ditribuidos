@@ -1,7 +1,5 @@
 package server;
 
-import com.google.protobuf.ByteString;
-
 import com.mensagem.protos.Mensagem;
 
 public class AddressBookDespachante {
