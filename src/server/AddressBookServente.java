@@ -1,16 +1,7 @@
 package server;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.InputStreamReader;
-
 import server.model.*;
-import com.autores.protos.AddressAutores;
-import com.autores.protos.Autor;
-import java.io.IOException;
-import java.io.PrintStream;
+
 
 
 public class AddressBookServente {
@@ -21,17 +12,11 @@ public class AddressBookServente {
 	// agenda.
 	// Os dados s�o armazenados em arquivo
 
-	public AddressBook list(String agenda) {
-
-		// L� o arquivo que armazena a agenda e retorna um objeto
-		// AddressBook preenchido com esses dados
-	}
-
-	public String CadastrarUsuario(Person person, String nomeAgenda) {
-		
-		
+	public String CadastrarUsuario(String nome, String Id, String email, String cpf) throws Exception {
 		AddUsuario addUsuario = new AddUsuario();
 		addUsuario.CadastrarUsuario(nome, Id, email, cpf);
+		String msgResposta = "Usuario cadastrado com sucesso";
+		return msgResposta;
 	}
 
 	public String remove(int id, String nomeAgenda) {
@@ -40,6 +25,7 @@ public class AddressBookServente {
 		// A pessoa que deve ser removida � indica po "id"
 		// O path do arquivo � indicado por "nomeAgenda"
 		// Retorna uma mensagem de sucesso ou de erro
+		return null;
 	}
 
 }

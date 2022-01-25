@@ -11,7 +11,7 @@ public class AddressBookDespachante {
 		esqueleto = new AddressBookEsqueleto();
 	}
 
-	public byte[] selecionaEqueleto(Mensagem request) {
+	public byte[] selecionaEqueleto(Mensagem request) throws Exception {
 		byte[] resposta = null;
 		if(request.getObjectReference()=="Cadastro"){
 			if(request.getMethod()=="Metodo_cadastro_usuario")                

@@ -75,7 +75,7 @@ public class UDPServer {
 		clientSocket.close();
 	}
 	
-	public static void main(String args[]) throws SocketException {		
+	public static void main(String args[]) throws Exception {		
 		AddressBookDespachante despachante = new AddressBookDespachante();
 		int idUltimaMsg = -1;
 		int ultimoCliente = -1;

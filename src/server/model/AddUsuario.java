@@ -39,7 +39,7 @@ public class AddUsuario {
   // Main function:  Reads the entire address book from a file,
   //   adds one person based on user input, then writes it back out to the same
   //   file.
-  public static void CadastrarUsuario(String nome, String Id, String email, String cpf) throws Exception {
+  public void CadastrarUsuario(String nome, String Id, String email, String cpf) throws Exception {
 	 
 	String dir = "BackUp_usuarios";
 
