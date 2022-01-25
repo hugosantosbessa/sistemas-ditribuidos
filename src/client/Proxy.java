@@ -15,7 +15,7 @@ public class Proxy {
 	private int id_request = 0;
 
 	public Proxy() {
-		udpclient = new UDPClient("localhost", 20001);
+		udpclient = new UDPClient("localhost", 9876);
 	}
 
 
@@ -139,12 +139,9 @@ public class Proxy {
 				estouro = false;
 				byte[] m;
 				try {
-					System.out.println("tentando receber pacote do server");
 					m = udpclient.getReplay();
-					System.out.println("Recebendo pacote do server");
 					resposta = desempacotaMensagem(m);
 				} catch (SocketTimeoutException e) {
-					System.out.println("erro ao receber pacote do server");
 					estouro = true;
 					udpclient.sendRequest(data);
 				}
