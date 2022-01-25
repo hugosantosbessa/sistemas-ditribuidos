@@ -49,16 +49,10 @@ public class Proxy {
 	}
 
 	private byte[] empacotaCadastro(String nome, String Id, String email, String cpf) {
-		Usuario cad = Usuario.newBuilder().setNome(nome).setId(Id).setEmail(email).setCpf(cpf).build();
-
-		ByteArrayOutputStream cad_em_bytes = new ByteArrayOutputStream(1024);
-		try {
-			cad.writeDelimitedTo(cad_em_bytes);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-		return cad_em_bytes.toByteArray();
+		String cad = nome + Id + email + cpf;
+		byte[] cad_em_bytes = cad.getBytes();
+		
+		return cad_em_bytes;
 	}
 
 	/*
