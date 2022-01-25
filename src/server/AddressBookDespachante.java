@@ -11,17 +11,23 @@ public class AddressBookDespachante {
 
 	public byte[] selecionaEqueleto(Mensagem request) throws Exception {
 		byte[] resposta = null;
-		if(request.getObjectReference()=="Cadastro"){
-			if(request.getMethod()=="Metodo_cadastro_usuario") {               
+		
+		switch (request.getObjectReference()) {
+		case "Cadastro": 
+			if(request.getMethod().equals("Metodo_cadastro_usuario"))    
 			resposta = (byte[]) (esqueleto.CadastrarUsuario(request.getArguments()));
-			}else if(request.getMethod()=="Metodo_cadastro_livro"){
+			
+			else if(request.getMethod().equals("Metodo_cadastro_livro"))
 			resposta = (byte[]) (esqueleto.CadastrarLivro(request.getArguments()));
-			}else if(request.getMethod()=="Metodo_cadastro_autor"){
+			
+			else if(request.getMethod().equals("Metodo_cadastro_autor"))
 			resposta = (byte[]) (esqueleto.CadastrarAutor(request.getArguments()));
-			}
+		break;
+		
+		default:
+			throw new IllegalArgumentException("Unexpected value: " + request.getObjectReference());
 		}
-	
-	
+		
 		return resposta;
 	}
 }
