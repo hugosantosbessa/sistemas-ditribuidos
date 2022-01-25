@@ -3,31 +3,20 @@ package server.model;
 
 import com.autores.protos.AddressAutores;
 import com.autores.protos.Autor;
-import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintStream;
 
 public class AddAutor {
   // This function fills in a Person message based on user input.
-  static Autor PromptForAddress(BufferedReader stdin,
-                                 PrintStream stdout) throws IOException {
+  static Autor setAutor(String nome, String Id, String email, String cpf) throws IOException {
     Autor.Builder autor = Autor.newBuilder();
     
-    stdout.print("ID: ");
-    autor.setId(Integer.valueOf(stdin.readLine()));
-    
-    stdout.print("Nome do autor: ");
-    autor.setName(stdin.readLine());
-    
-    stdout.print("CPF do autor: ");
-    autor.setCpf(Integer.valueOf(stdin.readLine()));
-    
-    stdout.print("Email do autor: ");
-    autor.setEmail(stdin.readLine());
+    autor.setId(Id);
+    autor.setName(nome);
+    autor.setCpf(cpf);  
+    autor.setEmail(email);
 
     
 
@@ -37,7 +26,7 @@ public class AddAutor {
   // Main function:  Reads the entire address book from a file,
   //   adds one person based on user input, then writes it back out to the same
   //   file.
-  public static void CadastrarAutor(String nome, String Id, String email, String cpf) throws Exception {
+  public void CadastrarAutor(String nome, String Id, String email, String cpf) throws Exception {
 
     AddressAutores.Builder addressAutores = AddressAutores.newBuilder();
     
@@ -56,8 +45,7 @@ public class AddAutor {
 
     // Add an address.
     addressAutores.addAutor(
-      PromptForAddress(new BufferedReader(new InputStreamReader(System.in)),
-                       System.out));
+    		setAutor(nome, Id, email, cpf));
 
     // Write the new address book back to disk.
     FileOutputStream output = new FileOutputStream(dir);

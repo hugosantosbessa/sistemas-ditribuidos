@@ -30,7 +30,7 @@ public class AddressBookClient {
 
 		switch (operacao) {
 		case 1:
-			System.out.println("Digite o nome do usuÃ¡rio: ");
+			System.out.println("Digite o nome do usuário: ");
 			do {
 				try {
 					opt = stdin.readLine();
@@ -40,7 +40,7 @@ public class AddressBookClient {
 			} while (opt.equals("\n") || opt.equals("") || opt.isEmpty());
 			String nome = opt + ";";
 			
-			System.out.println("Digite o Id do usuÃ¡rio: ");
+			System.out.println("Digite o Id do usuário: ");
 			do {
 				try {
 					opt = stdin.readLine();
@@ -50,7 +50,7 @@ public class AddressBookClient {
 			} while (opt.equals("\n") || opt.equals("") || opt.isEmpty());
 			String Id = opt + ";";
 			
-			System.out.println("Digite o email do usuÃ¡rio: ");
+			System.out.println("Digite o email do usuário: ");
 			do {
 				try {
 					opt = stdin.readLine();
@@ -60,7 +60,7 @@ public class AddressBookClient {
 			} while (opt.equals("\n") || opt.equals("") || opt.isEmpty());
 			String email = opt + ";";
 			
-			System.out.println("Digite o CPF do usuÃ¡rio: ");
+			System.out.println("Digite o CPF do usuário: ");
 			do {
 				try {
 					opt = stdin.readLine();

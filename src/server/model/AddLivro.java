@@ -3,31 +3,21 @@ package server.model;
 
 import com.livros.protos.AddressLivros;
 import com.livros.protos.Livro;
-import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintStream;
 
 public class AddLivro {
   // This function fills in a Person message based on user input.
-  static Livro PromptForAddress(BufferedReader stdin,
-                                 PrintStream stdout) throws IOException {
+  static Livro setLivro(String titulo, String cod, String genero, String autor, String quant_exemplares) throws IOException {
     Livro.Builder livro = Livro.newBuilder();
-
-    stdout.print("C�digo do livro: ");
-    livro.setCodigo(Integer.valueOf(stdin.readLine()));
-
-    stdout.print("Quantidade de exemplares: ");
-    livro.setQtd(Integer.valueOf(stdin.readLine()));
-
-    stdout.print("Nome do autor: ");
-    livro.setAutor(stdin.readLine());
     
-    stdout.print("G�nero do livro: ");
-    livro.setGenero(stdin.readLine());
+    livro.setTitulo(titulo);
+    livro.setCodigo(cod);
+    livro.setQtd(quant_exemplares);
+    livro.setAutor(autor);
+    livro.setGenero(genero);
 
     return livro.build();
   }
@@ -35,7 +25,7 @@ public class AddLivro {
   // Main function:  Reads the entire address book from a file,
   //   adds one person based on user input, then writes it back out to the same
   //   file.
-  public static void CadastrarLivro(String titulo, String cod, String genero, String autor, String quant_exemplares) throws Exception {
+  public void CadastrarLivro(String titulo, String cod, String genero, String autor, String quant_exemplares) throws Exception {
 	  
 	 String dir = "BackUp_livros";
 
@@ -55,8 +45,7 @@ public class AddLivro {
 
     // Add an address.
     addressLivros.addLivro(
-      PromptForAddress(new BufferedReader(new InputStreamReader(System.in)),
-                       System.out));
+    		setLivro(titulo, cod, genero, autor, quant_exemplares));
 
     // Write the new address book back to disk.
     FileOutputStream output = new FileOutputStream(dir);

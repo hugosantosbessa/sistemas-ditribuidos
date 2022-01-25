@@ -1,6 +1,2 @@
 eclipse.preferences.version=1
-encoding//src/client/AddressBookClient.java=UTF-8
-encoding//src/client/Proxy.java=UTF-8
-encoding//src/server/AddressBookDespachante.java=UTF-8
-encoding//src/server/AddressBookEsqueleto.java=UTF-8
-encoding//src/server/AddressBookServente.java=UTF-8
+encoding//src/server/model/AddLivro.java=UTF-8

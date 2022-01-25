@@ -30,9 +30,9 @@ option go_package = "../autores";
 // [START messages]
 message Autor {
   string name = 1;
-  int32 id = 2;  // Unique ID number for this person.
+  string id = 2;  // Unique ID number for this person.
   string email = 3;
-  int32 cpf = 4;
+  string cpf = 4;
 
 
   google.protobuf.Timestamp last_updated = 5;

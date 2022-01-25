@@ -36,7 +36,7 @@ public class Proxy {
 	public String CadastrarUsuario(String nome, String Id, String email, String cpf) {// cad proto
 		if (cpf != null) {
 			byte[] args = new byte[1024];
-			args = empacotaCadastro(nome, Id, email, cpf);
+			args = empacotaCadUsuario(nome, Id, email, cpf);
 
 			Mensagem aux = doOperation("Cadastro", "Metodo_cadastro_usuario", args);
 			byte[] msg =  aux.getArguments().toByteArray();
@@ -48,91 +48,60 @@ public class Proxy {
 		}
 	}
 
-	private byte[] empacotaCadastro(String nome, String Id, String email, String cpf) {
+	private byte[] empacotaCadUsuario(String nome, String Id, String email, String cpf) {
 		String cad = nome + Id + email + cpf;
 		byte[] cad_em_bytes = cad.getBytes();
 		
 		return cad_em_bytes;
 	}
 
-	/*
+	
 	public String CadastrarLivro(String titulo, String cod, String genero, String autor, String quant_exemplares) {// cad proto
 		if (cod != null) {
 			byte[] args = new byte[1024];
-			args = empacotaCadLivro(titulo, cod, genero, autor,quant_exemplares);
+			args = empacotaCadLivro(titulo, cod, genero, autor, quant_exemplares);
 
 			Mensagem aux = doOperation("Cadastro", "Metodo_cadastro_livro", args);
-
-			MensagemResponse msgResposta = null;
-
-			try {
-				msgResposta = MensagemResponse
-						.parseDelimitedFrom(new ByteArrayInputStream(aux.getArguments().toByteArray()));
-			} catch (java.lang.NullPointerException e) {
-				System.out.println("Servidor nao respondeu!, Tente novamente mais tarde.");
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-
-			return msgResposta.getMensagem();
+			byte[] msg =  aux.getArguments().toByteArray();
+			String msgResposta = new String(msg);
+		 
+			return msgResposta;
 		} else {
-			return "Operaï¿½ï¿½o invalida";
+			return "Operacao invalida";
 		}
 	}
-	*/
-	/*
+	
+	
 	private byte[] empacotaCadLivro(String titulo, String cod, String genero, String autor, String quant_exemplares) {
-		Livro cadLivro = Livro.newBuilder().set(titulo).setCod(cod).setGenero(genero).setAutor(autor).setQtd(quant_exemplares).build();
-
-		ByteArrayOutputStream cadLivro_em_bytes = new ByteArrayOutputStream(1024);
-		try {
-			cadLivro.writeDelimitedTo(cadLivro_em_bytes);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-		return cadLivro_em_bytes.toByteArray();
+		String cad = titulo + cod + genero + autor + quant_exemplares;
+		byte[] cad_em_bytes = cad.getBytes();
 		
+		return cad_em_bytes;
 	}
-	*/
-	/*
+	
+	
 	public String CadastrarAutor(String nome, String Id, String email, String cpf) {// cad proto
 		if (cpf != null) {
 			byte[] args = new byte[1024];
 			args = empacotaCadAutor(nome, Id, email, cpf);
 
 			Mensagem aux = doOperation("Cadastro", "Metodo_cadastro_autor", args);
+			byte[] msg =  aux.getArguments().toByteArray();
+			String msgResposta = new String(msg);
 
-			MensagemResponse msgResposta = null;
-
-			try {
-				msgResposta = MensagemResponse
-						.parseDelimitedFrom(new ByteArrayInputStream(aux.getArguments().toByteArray()));
-			} catch (java.lang.NullPointerException e) {
-				System.out.println("Servidor nao respondeu!, Tente novamente mais tarde.");
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-
-			return msgResposta.getMensagem();
+			return msgResposta;
 		} else {
-			return "Operaï¿½ï¿½o invalida";
+			return "Operacao invalida";
 		}
 	}
 
 	private byte[] empacotaCadAutor(String nome, String Id, String email, String cpf) {
-		Autor cadAutor = Usuario.newBuilder().setName(nome).setId(Id).setEmail(email).setCpf(cpf).build();
-
-		ByteArrayOutputStream cadAutor_em_bytes = new ByteArrayOutputStream(1024);
-		try {
-			cadAutor.writeDelimitedTo(cadAutor_em_bytes);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-		return cadAutor_em_bytes.toByteArray();
+		String cad = nome + Id + email + cpf;
+		byte[] cad_em_bytes = cad.getBytes();
+		
+		return cad_em_bytes;
 	}
-	*/
+
 
 	private byte[] empacotaMensagem(String objectRef, String method, byte[] args) {
 		Mensagem msg = Mensagem.newBuilder().setMessageType(0).setRequestId(id_request).setObjectReference(objectRef)

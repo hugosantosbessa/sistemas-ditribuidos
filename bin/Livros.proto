@@ -29,12 +29,13 @@ option go_package = "../livros";
 
 // [START messages]
 message Livro {
-  int32 codigo = 1;
-  int32 qtd = 2;  // Unique ID number for this person.
-  string autor = 3;
-  string genero = 4;
+  string titulo = 1;
+  string codigo = 2;
+  string qtd = 3;  // Unique ID number for this person.
+  string autor = 4;
+  string genero = 5;
 
-  google.protobuf.Timestamp last_updated = 5;
+  google.protobuf.Timestamp last_updated = 6;
 }
 
 // Our address book file is just one of these.

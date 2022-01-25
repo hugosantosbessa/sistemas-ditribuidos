@@ -4,8 +4,10 @@ package server.model;
 import com.autores.protos.AddressAutores;
 import com.autores.protos.Autor;
 import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.PrintStream;
 
-public class ListAutor {
+class ListAutor {
   // Iterates though all people in the AddressBook and prints info about them.
   static void Print(AddressAutores addressAutores) {
     for (Autor autor: addressAutores.getAutorList()) {
@@ -19,7 +21,7 @@ public class ListAutor {
 
   // Main function:  Reads the entire address book from a file and prints all
   //   the information inside.
-  public static void ListarAutores() throws Exception {    
+  public static void main(String[] args) throws Exception {    
 	  
 	  String dir = "BackUp_autores";
     // Read the existing address book.
