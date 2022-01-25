@@ -22,6 +22,9 @@ public class AddressBookDespachante {
 			
 			else if(request.getMethod().equals("Metodo_cadastro_autor"))
 			resposta = (byte[]) (esqueleto.CadastrarAutor(request.getArguments()));
+
+			else if(request.getMethod().equals("Metodo_realiza_emprestimo"))
+			resposta = (byte[]) (esqueleto.RealizarEmprestimo(request.getArguments()));
 		break;
 		
 		default:

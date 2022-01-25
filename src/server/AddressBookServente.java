@@ -26,6 +26,11 @@ public class AddressBookServente {
 		return msgResposta;
 	}
 
-
+	public String RealizarEmprestimo(String Id, String codigo, String quantidade, String dataR, String dataE) throws Exception {
+		AddEmprestimo addEmprestimo = new AddEmprestimo();
+		addEmprestimo.RealizarCadastro( Id, codigo, quantidade,dataR, dataE);
+		String msgResposta = "Emprestimo realizado com sucesso";
+		return msgResposta;
+	}
 
 }

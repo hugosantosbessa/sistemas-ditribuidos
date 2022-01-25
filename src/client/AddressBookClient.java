@@ -30,7 +30,7 @@ public class AddressBookClient {
 
 		switch (operacao) {
 		case 1:
-			System.out.println("Digite o nome do usuário: ");
+			System.out.println("Digite o nome do usuï¿½rio: ");
 			do {
 				try {
 					opt = stdin.readLine();
@@ -40,7 +40,7 @@ public class AddressBookClient {
 			} while (opt.equals("\n") || opt.equals("") || opt.isEmpty());
 			String nome = opt + ";";
 			
-			System.out.println("Digite o Id do usuário: ");
+			System.out.println("Digite o Id do usuï¿½rio: ");
 			do {
 				try {
 					opt = stdin.readLine();
@@ -50,7 +50,7 @@ public class AddressBookClient {
 			} while (opt.equals("\n") || opt.equals("") || opt.isEmpty());
 			String Id = opt + ";";
 			
-			System.out.println("Digite o email do usuário: ");
+			System.out.println("Digite o email do usuï¿½rio: ");
 			do {
 				try {
 					opt = stdin.readLine();
@@ -60,7 +60,7 @@ public class AddressBookClient {
 			} while (opt.equals("\n") || opt.equals("") || opt.isEmpty());
 			String email = opt + ";";
 			
-			System.out.println("Digite o CPF do usuário: ");
+			System.out.println("Digite o CPF do usuï¿½rio: ");
 			do {
 				try {
 					opt = stdin.readLine();
@@ -78,6 +78,8 @@ public class AddressBookClient {
 		case 3:
 			//proxy.CadastrarAutor(opt, opt, opt, opt);
 			break;
+		case 4:
+			//proxy.RealizarEmprestimo(opt,opt,opt,opt,opt,opt)
 		default:
 			System.out.println("Operacao invalida, tente outra.");
 			break;

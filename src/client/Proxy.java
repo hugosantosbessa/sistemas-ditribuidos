@@ -25,6 +25,8 @@ public class Proxy {
 		System.out.println("1. Cadastrar Usuario");
 		System.out.println("2. Cadastrar Livro");	
 		System.out.println("3. Cadastrar Autor");
+		System.out.println("4. Realizar Emprestimo");
+
 		System.out.println("-------------------------------------------------------------------------");
 	}
 
@@ -95,6 +97,28 @@ public class Proxy {
 		byte[] cad_em_bytes = cad.getBytes();
 		
 		return cad_em_bytes;
+	}
+
+	public String RealizarEmprestimo(String Id, String codigo, String quantidade, String dataR, String dataE) {// cad proto
+		if (Id != null) {
+			byte[] args = new byte[1024];
+			args = empacotaEmprestimo(Id, codigo, quantidade, dataR, dataE);
+
+			Mensagem aux = doOperation("Cadastro", "Metodo_realiza_emprestimo", args);
+			byte[] msg =  aux.getArguments().toByteArray();
+			String msgResposta = new String(msg);
+		 
+			return msgResposta;
+		} else {
+			return "Operacao invalida";
+		}
+	}
+
+	private byte[] empacotaEmprestimo(String Id, String codigo, String quantidade, String dataR, String dataE) {
+		String emp = Id + codigo + quantidade + dataR + dataE;
+		byte[] emp_em_bytes = emp.getBytes();
+		
+		return emp_em_bytes;
 	}
 
 
