@@ -2,6 +2,7 @@ package server;
 
 import java.io.IOException;
 import java.net.*;
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 
 import com.google.protobuf.InvalidProtocolBufferException;
@@ -22,16 +23,19 @@ public class UDPServer {
 			e.printStackTrace();
 		}
 
-		return receiveData;
+		return receivePacket.getData();
 	}
 	
 	public static Mensagem desempacotaRequisicao(byte[] args) {
 		Mensagem mensagem = null;
 
 		try{
-			mensagem = Mensagem.parseFrom(args);
+			mensagem = Mensagem.parseDelimitedFrom(new ByteArrayInputStream(args));
 		}catch(InvalidProtocolBufferException e){
 			System.out.println("Erro:" + e.getMessage());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
 		return mensagem;
