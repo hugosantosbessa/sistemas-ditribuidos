@@ -5,18 +5,13 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.SocketTimeoutException;
 
-import com.autores.protos.Autor;
 import com.google.protobuf.ByteString;
-import com.livros.protos.Livro;
 import com.mensagem.protos.Mensagem;
-import com.mensagem_response.protos.MensagemResponse;
-import com.usuarios.protos.Usuario;
 
 
 public class Proxy {
 
 	UDPClient udpclient;
-	private static int id_usuario = -1;
 	private int id_request = 0;
 
 	public Proxy() {
