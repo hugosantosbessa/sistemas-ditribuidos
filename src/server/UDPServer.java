@@ -77,9 +77,6 @@ public class UDPServer {
 	public static void main(String args[]) throws Exception {
 		clientSocket = new DatagramSocket(9876);
 		AddressBookDespachante despachante = new AddressBookDespachante();
-		//int idUltimaMsg = -1;
-		//int ultimoCliente = -1;
-		//int cliente = 0;
 		while(true){
 			Mensagem mensagem = null;
 			mensagem = desempacotaRequisicao(getRequest());
@@ -87,15 +84,6 @@ public class UDPServer {
 				byte[] resultado = despachante.selecionaEqueleto(mensagem);
 				sendReply(empacotaResposta(resultado, mensagem.getRequestId()));
 			}
-			/*if((idUltimaMsg != mensagem.getRequestId() && ultimoCliente != cliente) ||
-			(idUltimaMsg != mensagem.getRequestId() && ultimoCliente == cliente)){
-				idUltimaMsg = mensagem.getRequestId();
-				ultimoCliente = cliente;
-				cliente += 1;
-				sendReply(empacotaResposta(despachante.selecionaEqueleto(mensagem), mensagem.getRequestId()));	
-			}else{
-				System.out.println("Mensagem Duplicada -> ID:" + mensagem.getRequestId() + "cliente:" + cliente);
-			} */
 		}
 
 	}
