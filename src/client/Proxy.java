@@ -22,6 +22,7 @@ public class Proxy {
 	public void Menu() {
 		System.out.println("-------------------------------------------------------------------------");
 		System.out.println("\nMENU USUARIO\nDigite o n da operacao que deseja executar: ");
+		System.out.println("0. Sair");
 		System.out.println("1. Cadastrar Usuario");
 		System.out.println("2. Cadastrar Livro");	
 		System.out.println("3. Cadastrar Autor");

@@ -50,6 +50,20 @@ public class AddressBookEsqueleto {
 		byte[] resposta = msgResposta.getBytes();
 		return resposta;
 	}
+	
+	public byte[] RealizarEmprestimo(ByteString args) throws Exception {
+		byte[] msg = args.toByteArray();
+		String data = new String(msg); 
+		String[] valores = data.split(";");	
+		String Id = valores[0];
+		String codigo = valores[1];
+		String quantidade = valores[2];
+		String dataR = valores[3];
+		String dataE = valores[4];
+		String msgResposta = servente.RealizarEmprestimo(Id, codigo, quantidade, dataR, dataE);
+		byte[] resposta = msgResposta.getBytes();
+		return resposta;
+	}
 
 
 

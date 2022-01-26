@@ -29,8 +29,12 @@ public class AddressBookClient {
 		operacao = Integer.parseInt(opt);
 
 		switch (operacao) {
+		case 0:
+			System.out.println("Encerrando programa");
+			break;
+			
 		case 1:
-			System.out.println("Digite o nome do usuï¿½rio: ");
+			System.out.println("Digite o nome do usuario: ");
 			do {
 				try {
 					opt = stdin.readLine();
@@ -40,7 +44,7 @@ public class AddressBookClient {
 			} while (opt.equals("\n") || opt.equals("") || opt.isEmpty());
 			String nome = opt + ";";
 			
-			System.out.println("Digite o Id do usuï¿½rio: ");
+			System.out.println("Digite o Id do usuario: ");
 			do {
 				try {
 					opt = stdin.readLine();
@@ -50,7 +54,7 @@ public class AddressBookClient {
 			} while (opt.equals("\n") || opt.equals("") || opt.isEmpty());
 			String Id = opt + ";";
 			
-			System.out.println("Digite o email do usuï¿½rio: ");
+			System.out.println("Digite o email do usuario: ");
 			do {
 				try {
 					opt = stdin.readLine();
@@ -60,7 +64,7 @@ public class AddressBookClient {
 			} while (opt.equals("\n") || opt.equals("") || opt.isEmpty());
 			String email = opt + ";";
 			
-			System.out.println("Digite o CPF do usuï¿½rio: ");
+			System.out.println("Digite o CPF do usuario: ");
 			do {
 				try {
 					opt = stdin.readLine();
@@ -73,7 +77,7 @@ public class AddressBookClient {
 			break;
 			
 		case 2:
-			System.out.println("Digite o título do livro: ");
+			System.out.println("Digite o titulo do livro: ");
 			do {
 				try {
 					opt = stdin.readLine();
@@ -83,7 +87,7 @@ public class AddressBookClient {
 			} while (opt.equals("\n") || opt.equals("") || opt.isEmpty());
 			String titulo = opt + ";";
 			
-			System.out.println("Digite o código do livro: ");
+			System.out.println("Digite o codigo do livro: ");
 			do {
 				try {
 					opt = stdin.readLine();
@@ -93,7 +97,7 @@ public class AddressBookClient {
 			} while (opt.equals("\n") || opt.equals("") || opt.isEmpty());
 			String cod = opt + ";";
 			
-			System.out.println("Digite o gênero do livro: ");
+			System.out.println("Digite o genero do livro: ");
 			do {
 				try {
 					opt = stdin.readLine();
@@ -167,12 +171,58 @@ public class AddressBookClient {
 			cpf = opt + ";";
 			System.out.println(proxy.CadastrarAutor(nome, Id, email, cpf)); 
 			break;
-<<<<<<< HEAD
 		case 4:
-			//proxy.RealizarEmprestimo(opt,opt,opt,opt,opt,opt)
-=======
+			System.out.println("Digite o Id do emprestimo: ");
+			do {
+				try {
+					opt = stdin.readLine();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			} while (opt.equals("\n") || opt.equals("") || opt.isEmpty());
+			Id = opt + ";";
 			
->>>>>>> df7a7724f2ef53b1a23d8fcfc25b1b2bcbe693ca
+			System.out.println("Digite o codigo do emprestimo: ");
+			do {
+				try {
+					opt = stdin.readLine();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			} while (opt.equals("\n") || opt.equals("") || opt.isEmpty());
+			String codigo = opt + ";";
+			
+			System.out.println("Digite o quantidade do emprestimo: ");
+			do {
+				try {
+					opt = stdin.readLine();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			} while (opt.equals("\n") || opt.equals("") || opt.isEmpty());
+			String quantidade = opt + ";";
+			
+			System.out.println("Digite o data de reserva do emprestimo: ");
+			do {
+				try {
+					opt = stdin.readLine();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			} while (opt.equals("\n") || opt.equals("") || opt.isEmpty());
+			String dataR = opt + ";";
+			
+			System.out.println("Digite o data de entrega do emprestimo: ");
+			do {
+				try {
+					opt = stdin.readLine();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			} while (opt.equals("\n") || opt.equals("") || opt.isEmpty());
+			String dataE = opt + ";";
+			System.out.println(proxy.RealizarEmprestimo(Id, codigo, quantidade, dataR, dataE));
+			
 		default:
 			System.out.println("Operacao invalida, tente outra.");
 			break;
