@@ -35,11 +35,15 @@ public class Proxy {
 		if (cpf != null) {
 			byte[] args = new byte[1024];
 			args = empacotaCadUsuario(nome, Id, email, cpf);
-
+			
 			Mensagem aux = doOperation("Cadastro", "Metodo_cadastro_usuario", args);
-			byte[] msg =  aux.getArguments().toByteArray();
+			byte[] msg = null;
+			try {
+				msg =  aux.getArguments().toByteArray();
+			} catch (java.lang.NullPointerException e) {
+				System.out.println("Servidor não respondeu!, Tente novamente mais tarde.");
+			}
 			String msgResposta = new String(msg);
-		 
 			return msgResposta;
 		} else {
 			return "Operacao invalida";
@@ -60,7 +64,12 @@ public class Proxy {
 			args = empacotaCadLivro(titulo, cod, genero, autor, quant_exemplares);
 
 			Mensagem aux = doOperation("Cadastro", "Metodo_cadastro_livro", args);
-			byte[] msg =  aux.getArguments().toByteArray();
+			byte[] msg = null;
+			try {
+				msg =  aux.getArguments().toByteArray();
+			} catch (java.lang.NullPointerException e) {
+				System.out.println("Servidor não respondeu!, Tente novamente mais tarde.");
+			}
 			String msgResposta = new String(msg);
 		 
 			return msgResposta;
@@ -84,7 +93,12 @@ public class Proxy {
 			args = empacotaCadAutor(nome, Id, email, cpf);
 
 			Mensagem aux = doOperation("Cadastro", "Metodo_cadastro_autor", args);
-			byte[] msg =  aux.getArguments().toByteArray();
+			byte[] msg = null;
+			try {
+				msg =  aux.getArguments().toByteArray();
+			} catch (java.lang.NullPointerException e) {
+				System.out.println("Servidor não respondeu!, Tente novamente mais tarde.");
+			}
 			String msgResposta = new String(msg);
 
 			return msgResposta;
@@ -106,7 +120,12 @@ public class Proxy {
 			args = empacotaEmprestimo(Id, codigo, quantidade, dataR, dataE);
 
 			Mensagem aux = doOperation("Cadastro", "Metodo_realiza_emprestimo", args);
-			byte[] msg =  aux.getArguments().toByteArray();
+			byte[] msg = null;
+			try {
+				msg =  aux.getArguments().toByteArray();
+			} catch (java.lang.NullPointerException e) {
+				System.out.println("Servidor não respondeu!, Tente novamente mais tarde.");
+			}
 			String msgResposta = new String(msg);
 		 
 			return msgResposta;

@@ -4,8 +4,6 @@ package server.model;
 import com.usuarios.protos.AddressUsuarios;
 import com.usuarios.protos.Usuario;
 import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.PrintStream;
 
 class ListUsuario {
   // Iterates though all people in the AddressBook and prints info about them.

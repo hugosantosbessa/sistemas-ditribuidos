@@ -4,16 +4,14 @@ package server.model;
 import com.livros.protos.AddressLivros;
 import com.livros.protos.Livro;
 import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.PrintStream;
 
 class ListLivro {
   // Iterates though all people in the AddressBook and prints info about them.
   static void Print(AddressLivros addressLivros) {
     for (Livro livro: addressLivros.getLivroList()) {
-      System.out.println("Código livro: " + livro.getCodigo());
+      System.out.println("Cï¿½digo livro: " + livro.getCodigo());
       System.out.println("	Autor: " + livro.getAutor());
-      System.out.println("	Gênero: " + livro.getGenero());
+      System.out.println("	Gï¿½nero: " + livro.getGenero());
       System.out.println("	Quantidade de exemplares: " + livro.getQtd());
    
     }

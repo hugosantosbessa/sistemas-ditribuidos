@@ -4,15 +4,13 @@ package server.model;
 import com.emprestimos.protos.AddressEmprestimos;
 import com.emprestimos.protos.Emprestimo;
 import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.PrintStream;
 
 class ListEmprestimo {
   // Iterates though all people in the AddressBook and prints info about them.
   static void Print(AddressEmprestimos addressEmprestimos) {
     for (Emprestimo emprestimo: addressEmprestimos.getEmprestimoList()) {
       System.out.println("ID: " + emprestimo.getId());
-      System.out.println("	Código: " + emprestimo.getCodigo());
+      System.out.println("	Cï¿½digo: " + emprestimo.getCodigo());
       System.out.println("	Quantidade: " + emprestimo.getQuantidade());
       System.out.println("	Data de reserva: " + emprestimo.getDataReserva());
       System.out.println("	Data de entrega: " + emprestimo.getDataEntrega());
